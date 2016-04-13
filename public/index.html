@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+
+<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+
+</head>
+<body>
+
+<div class="container"></div>
+<div class="bootstrap-iso ">
+ <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-offset-3 col-sm-6 col-xs-12">
+    <form method="post">
+     <div class="form-group ">
+      <label class="control-label requiredField" for="name">
+       Name
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" type="text" name="name" id="name" placeholder="Enter name" required />
+      <span class="help-block" id="hint_name">
+       fjkdsjkfjsdf
+      </span>
+     </div>
+     <div class="form-group" id="div_radio">
+      <label class="control-label requiredField" for="radio">
+       Gender
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <div class="form-group">
+       <label class="radio-block">
+        <input name="gender" type="radio" id="male" value="male" checked />
+        Male
+       </label>
+       <label class="radio-block">
+        <input name="gender" type="radio" id="male" value="female"/>
+        Female
+       </label>
+      </div>
+     </div>
+     <div class="form-group ">
+      <label class="control-label requiredField" for="number" >
+       Age
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" type="number" name="age" min="1" max="75" id="age" placeholder="Enter age" required />
+      <span class="help-block" id="hint_name">
+       fjkdsjkfjsdf
+      </span>
+     </div>
+     <div class="form-group ">
+      <label class="control-label requiredField" for="number">
+       Weight
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" type="number" name="weight" min="1" id="weight" placeholder="Enter weight in kg." required="" />
+      <span class="help-block" id="hint_name">
+       fjkdsjkfjsdf
+      </span>
+     </div>
+     <div class="form-group ">
+      <label class="control-label requiredField" for="number1">
+       Duration of Activity
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" type="number" name="seconds" min="1" id="seconds" placeholder="seconds" required />
+      <span class="help-block" id="hint_name">
+       fjkdsjkfjsdf
+      </span>
+     </div>
+     <div class="form-group ">
+      <label class="control-label requiredField" for="number2">
+       Avg. Heartbeat Rate
+       <span class="asteriskField">
+        *
+       </span>
+      </label>
+      <input class="form-control" type="number" name="beat" min="70" max="200" id="beat" placeholder="Beats per minute" required/>
+      <span class="help-block" id="hint_name">
+       fjkdsjkfjsdf
+      </span>
+     </div>
+     <div class="form-group">
+      <div>
+       <button type="submit" class="btn btn-primary" onclick="getEnergy()">Submit</button>
+      </div>
+     </div>
+     <div class="form-group">
+       <div id="total"></div>
+     </div>
+    </form>
+   </div>
+  </div>
+ </div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+
+function getEnergy(){
+  var age = document.getElementById("age").value;
+  var weight = document.getElementById("weight").value;
+  var seconds = document.getElementById("seconds").value;
+  var beat = document.getElementById("beat").value;
+
+
+  if(document.getElementById('male').checked){
+    var maleEnergy = ((-55.0969 + (0.6309 * beat) + (0.1988 * weight) + (0.2017 * age)) / 4.184) *60 * seconds / 3600;
+    
+    if(maleEnergy == 0){
+      
+
+      document.getElementById('total').className += " alert alert-danger"
+      document.getElementById("total").innerHTML = "Have You Filled Out All Fields?";
+    }
+    else{
+    
+      document.getElementById('total').className += " alert alert-success"
+      document.getElementById("total").innerHTML = "Total male Energy = " + maleEnergy + " Calory Consumed By You.";
+    }
+    
+  }
+
+  if(document.getElementById('female').checked){
+    var femaleEnergy = ((-20.4022 + (0.4472 * beat) - (0.1263 * weight) + (0.074 * age)) / 4.184) *2 *60 * seconds / 3600;
+    document.getElementById("total").innerHTML = "Total female Energy = " + femaleEnergy + " Calory Consumed By You.";
+    if(femaleEnergy == 0){
+      document.getElementById('total').className += " alert alert-danger"
+      document.getElementById("total").innerHTML = "Have You Filled Out All Fields?";
+     
+    }
+    else{
+      
+      document.getElementById('total').className += " alert alert-success"
+      document.getElementById("total").innerHTML = "Total femaleEnergymale Energy = " + maleEnergy + " Calory Consumed By You.";
+    }
+  } 
+}
+
+</script>
+</body>
+</html>
